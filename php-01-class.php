@@ -17,3 +17,44 @@
 
 
 */
+
+class ShoppingBasket {
+
+  private $items = [];
+
+  public function addItem($item) {
+    $this->items[] = $item;
+  }
+
+  public function removeItem($index) {
+    array_splice($this->items, $index, 1);
+  }
+
+  public function totalValue() {
+    $total = 0;
+    foreach ($this->items as $item) {
+      $total += $item['value'];
+    }
+    return $total;
+  }
+
+}
+
+$shoppingBasket = new ShoppingBasket;
+
+$shoppingBasket->addItem(array(
+  'value' => 9.99
+));
+
+$shoppingBasket->addItem(array(
+  'value' => 2.99
+));
+
+$shoppingBasket->addItem(array(
+  'value' => 0.99
+));
+
+$shoppingBasket->removeItem(1);
+
+echo $shoppingBasket->totalValue();
+echo "\n";

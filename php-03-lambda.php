@@ -19,9 +19,18 @@ $raw = array(
     ),
     'likes' => array(
         'cars'  => array(
-        	'Subaru Impreza WRX STi', 
+        	'Subaru Impreza WRX STi',
         	'Mitsubishi Evo', 'Nissan GTR'
         ),
         'bikes' => array(),
     ),
 );
+
+$lambda = function ($v) use (&$lambda) {
+  if (is_array($v)) return array_filter($v, $lambda);
+  if (!empty($v)) return true;
+  return false;
+};
+
+$filtered = array_filter($raw, $lambda);
+var_dump($filtered);
